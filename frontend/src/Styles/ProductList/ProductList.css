@@ -1,0 +1,88 @@
+.product-list-container .product-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.product-list-container .product-list-header .button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 180px;
+}
+.product-list-container .product-list-header .button-container button {
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 8px;
+  cursor: pointer;
+  position: relative;
+  font-weight: bold;
+}
+.product-list-container .product-list-header .button-container #add-btn::after,
+.product-list-container .product-list-header .button-container #delete-product-btn::after {
+  content: "";
+  position: absolute;
+  background: black;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+  z-index: -2;
+  left: 3px;
+  top: 5px;
+}
+.product-list-container .product-list-header .button-container #add-btn::after {
+  width: 46px;
+}
+.product-list-container .product-list-header .button-container #delete-product-btn::after {
+  width: 112px;
+}
+.product-list-container .product-list-header .button-container #add-btn:hover,
+.product-list-container .product-list-header .button-container #delete-product-btn:hover {
+  color: white;
+  background-color: black;
+}
+.product-list-container .product-list-header .button-container #add-btn:hover::after,
+.product-list-container .product-list-header .button-container #delete-product-btn:hover::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: 0.25s;
+}
+.product-list-container .product-wrapper {
+  margin: 10px auto 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 40px;
+}
+.product-list-container .product-wrapper h1 {
+  position: absolute;
+  left: 35%;
+  top: 200px;
+}
+@media screen and (max-width: 1500px) {
+  .product-list-container .product-wrapper {
+    grid-template-columns: repeat(4, auto);
+  }
+}
+@media screen and (max-width: 1200px) {
+  .product-list-container .product-wrapper {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+@media screen and (max-width: 900px) {
+  .product-list-container .product-wrapper {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+@media screen and (max-width: 600px) {
+  .product-list-container .product-wrapper {
+    grid-template-columns: repeat(1, auto);
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .product-list-container .product-list-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}/*# sourceMappingURL=ProductList.css.map */

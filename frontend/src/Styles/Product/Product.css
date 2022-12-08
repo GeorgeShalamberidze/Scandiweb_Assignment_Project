@@ -1,0 +1,22 @@
+.product-container {
+  margin: 0 auto;
+  border: 2px solid black;
+  position: relative;
+  width: 260px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.product-container .delete-checkbox {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+.product-container .product-info {
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 3px;
+  min-width: 105px;
+}/*# sourceMappingURL=Product.css.map */

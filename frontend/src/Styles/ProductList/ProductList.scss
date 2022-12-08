@@ -1,0 +1,98 @@
+@use "../globals.scss" as styles;
+
+.product-list-container {
+  .product-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      width: 180px;
+      button {
+        @include styles.boarder;
+        padding: 8px;
+        cursor: pointer;
+        position: relative;
+        font-weight: bold;
+      }
+      #add-btn::after,
+      #delete-product-btn::after {
+        content: "";
+        position: absolute;
+        background: black;
+        height: styles.$btn-height;
+        @include styles.boarder;
+        z-index: -2;
+        left: 3px;
+        top: 5px;
+      }
+      #add-btn::after {
+        width: styles.$add-btn-width;
+      }
+      #delete-product-btn::after {
+        width: styles.$delete-btn-width;
+      }
+      #add-btn:hover,
+      #delete-product-btn:hover {
+        color: white;
+        background-color: black;
+
+        &::after {
+          top: 0;
+          left: 0;
+          right: 0;
+          transition: 0.25s;
+        }
+      }
+    }
+    margin-bottom: 20px;
+  }
+
+  .product-wrapper {
+    margin: 10px auto 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    gap: 40px;
+
+    h1 {
+      position: absolute;
+      left: 35%;
+      top: 200px;
+    }
+  }
+
+  @media screen and (max-width: 1500px) {
+    .product-wrapper {
+      grid-template-columns: repeat(4, auto);
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .product-wrapper {
+      grid-template-columns: repeat(3, auto);
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .product-wrapper {
+      grid-template-columns: repeat(2, auto);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .product-wrapper {
+      grid-template-columns: repeat(1, auto);
+    }
+  }
+}
+@media screen and (max-width: 415px) {
+  .product-list-container {
+    .product-list-header {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,124 @@
+@use "../globals.scss" as styles;
+
+.add-product-container {
+  .add-product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      width: 130px;
+      button {
+        @include styles.boarder;
+        padding: 8px;
+        cursor: pointer;
+        position: relative;
+        font-weight: bold;
+      }
+      .save-btn::after,
+      .cancel-btn::after {
+        content: "";
+        position: absolute;
+        background: black;
+        height: styles.$btn-height;
+        @include styles.boarder;
+        z-index: -2;
+        left: 3px;
+        top: 5px;
+      }
+      .save-btn::after {
+        width: styles.$save-btn-width;
+      }
+      .cancel-btn::after {
+        width: styles.$cancel-btn-width;
+      }
+      .save-btn:hover,
+      .cancel-btn:hover {
+        color: white;
+        background-color: black;
+
+        &::after {
+          top: 0;
+          left: 0;
+          right: 0;
+          transition: 0.25s;
+        }
+      }
+    }
+    margin-bottom: 20px;
+  }
+
+  #product_form {
+    margin-top: 50px;
+    width: 100%;
+    .form-wrapper {
+      max-width: 500px;
+      width: 40%;
+      margin: 0 auto;
+      border-radius: 10px;
+      padding: 20px;
+
+      box-shadow: 2px 4px 15px -3px rgba(0, 0, 0, 0.74);
+      -webkit-box-shadow: 2px 4px 15px -3px rgba(0, 0, 0, 0.74);
+      -moz-box-shadow: 2px 4px 15px -3px rgba(0, 0, 0, 0.74);
+    }
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 15px 0;
+
+      input,
+      #productType {
+        padding: 7px 0;
+      }
+
+      .description {
+        margin-top: 10px;
+      }
+
+      span {
+        display: none;
+        color: red;
+      }
+
+      .errorMessage {
+        color: red;
+      }
+    }
+
+    input:invalid[focused="true"] ~ span {
+      display: block;
+    }
+
+    .type-switcher-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      #productType {
+        padding: 7px 0;
+        width: 50%;
+      }
+    }
+  }
+  @media screen and (max-width: 740px) {
+    #product_form {
+      .form-wrapper {
+        width: 75%;
+      }
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    .add-product-header {
+      flex-direction: column;
+
+      .button-container {
+        width: 155px;
+      }
+    }
+  }
+}

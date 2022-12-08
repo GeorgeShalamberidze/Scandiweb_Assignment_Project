@@ -1,0 +1,108 @@
+.add-product-container .add-product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.add-product-container .add-product-header .button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 130px;
+}
+.add-product-container .add-product-header .button-container button {
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 8px;
+  cursor: pointer;
+  position: relative;
+  font-weight: bold;
+}
+.add-product-container .add-product-header .button-container .save-btn::after,
+.add-product-container .add-product-header .button-container .cancel-btn::after {
+  content: "";
+  position: absolute;
+  background: black;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+  z-index: -2;
+  left: 3px;
+  top: 5px;
+}
+.add-product-container .add-product-header .button-container .save-btn::after {
+  width: 48px;
+}
+.add-product-container .add-product-header .button-container .cancel-btn::after {
+  width: 61px;
+}
+.add-product-container .add-product-header .button-container .save-btn:hover,
+.add-product-container .add-product-header .button-container .cancel-btn:hover {
+  color: white;
+  background-color: black;
+}
+.add-product-container .add-product-header .button-container .save-btn:hover::after,
+.add-product-container .add-product-header .button-container .cancel-btn:hover::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: 0.25s;
+}
+.add-product-container #product_form {
+  margin-top: 50px;
+  width: 100%;
+}
+.add-product-container #product_form .form-wrapper {
+  max-width: 500px;
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 2px 4px 15px -3px rgba(0, 0, 0, 0.74);
+  -webkit-box-shadow: 2px 4px 15px -3px rgba(0, 0, 0, 0.74);
+  -moz-box-shadow: 2px 4px 15px -3px rgba(0, 0, 0, 0.74);
+}
+.add-product-container #product_form .input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+.add-product-container #product_form .input-container input,
+.add-product-container #product_form .input-container #productType {
+  padding: 7px 0;
+}
+.add-product-container #product_form .input-container .description {
+  margin-top: 10px;
+}
+.add-product-container #product_form .input-container span {
+  display: none;
+  color: red;
+}
+.add-product-container #product_form .input-container .errorMessage {
+  color: red;
+}
+.add-product-container #product_form input:invalid[focused=true] ~ span {
+  display: block;
+}
+.add-product-container #product_form .type-switcher-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-product-container #product_form .type-switcher-container #productType {
+  padding: 7px 0;
+  width: 50%;
+}
+@media screen and (max-width: 740px) {
+  .add-product-container #product_form .form-wrapper {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 350px) {
+  .add-product-container .add-product-header {
+    flex-direction: column;
+  }
+  .add-product-container .add-product-header .button-container {
+    width: 155px;
+  }
+}/*# sourceMappingURL=AddProduct.css.map */
