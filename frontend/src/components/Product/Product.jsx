@@ -1,14 +1,28 @@
 import React, { Component } from "react";
 import "../../Styles/Product/Product.css";
 
-// ({ SKU, name, price, attr, value, type, id }) =>
 export default class Product extends Component {
   constructor(props) {
     super(props);
     this.handleCheckBox = this.handleCheckBox.bind(this);
+    this.state = {
+      asd: false,
+    };
+    console.log(this.state);
+
+    setTimeout(() => {
+      let checkboxes = document.getElementsByClassName("delete-checkbox");
+      for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = true;
+        checkboxes[i].defaultChecked = true;
+      }
+      console.log("NOW");
+      console.log(this.state);
+    }, 2000);
   }
 
   handleCheckBox(e) {
+    console.log(1);
     const { value, checked } = e.target;
     this.props.checkBox(value, checked);
   }
@@ -23,10 +37,13 @@ export default class Product extends Component {
         return <p>Weight: {weight} KG</p>;
       case "Furniture":
         return <p>Dimensions: {`${height}x${width}x${length}`}</p>;
+      default:
+        break;
     }
   }
 
   render() {
+    const { SKU, name, price } = this.props;
     return (
       <div className="product-container">
         <input
@@ -35,11 +52,12 @@ export default class Product extends Component {
           name={this.props.name}
           value={this.props.id}
           onChange={this.handleCheckBox}
+          checked={this.state.asd}
         />
         <div className="product-info">
-          <p className="sku">{this.props.SKU}</p>
-          <p className="name">{this.props.name}</p>
-          <p className="price">{this.props.price} $</p>
+          <p className="sku">{SKU}</p>
+          <p className="name">{name}</p>
+          <p className="price">{price} $</p>
 
           {this.conditionalInputForProductTypes(this.props.productType)}
         </div>

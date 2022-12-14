@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ProductDimension from "../ProductDimension";
 import FormInput from "../FormInput";
 import { InputValues } from "../../Values";
-import { getProducts, postProducts } from "../../getProducts";
+import { getProducts, postProducts } from "../../productsAPI";
 
 export default class AddProduct extends Component {
   constructor(props) {
@@ -55,9 +55,9 @@ export default class AddProduct extends Component {
               skuValid: false,
             });
           } else {
-            postProducts(objToPost)
+            postProducts(restObject)
               .then((data) => {
-                if (data && data.status === 200) {
+                if (data && data.status === 201) {
                   this.resetState();
                   this.props.navigate("/");
                 }
@@ -84,6 +84,7 @@ export default class AddProduct extends Component {
       length: "",
       size: "",
       weight: "",
+      skuValid: true,
     });
   }
 

@@ -3,10 +3,6 @@ import { DimensionInputValues } from "../Values";
 import FormInput from "./FormInput";
 
 export default class ProductDimension extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     switch (this.props.state["productType"]) {
       case "Furniture":
@@ -14,9 +10,9 @@ export default class ProductDimension extends Component {
           <>
             {DimensionInputValues.filter(
               (item) =>
-                item.name == "height" ||
-                item.name == "width" ||
-                item.name == "length"
+                item.name === "height" ||
+                item.name === "width" ||
+                item.name === "length"
             ).map((item) => {
               return (
                 <div className="input-container" key={item.id}>
@@ -35,12 +31,15 @@ export default class ProductDimension extends Component {
                 </div>
               );
             })}
+            <p style={{ fontSize: 18, fontWeight: "bold" }}>
+              *Please, provide dimensions
+            </p>
           </>
         );
       case "DVD":
         return (
           <>
-            {DimensionInputValues.filter((item) => item.name == "size").map(
+            {DimensionInputValues.filter((item) => item.name === "size").map(
               (item) => {
                 return (
                   <div className="input-container" key={item.id}>
@@ -60,12 +59,15 @@ export default class ProductDimension extends Component {
                 );
               }
             )}
+            <p style={{ fontSize: 18, fontWeight: "bold" }}>
+              *Please, provide size
+            </p>
           </>
         );
       case "Book":
         return (
           <>
-            {DimensionInputValues.filter((item) => item.name == "weight").map(
+            {DimensionInputValues.filter((item) => item.name === "weight").map(
               (item) => {
                 return (
                   <div className="input-container" key={item.id}>
@@ -85,8 +87,13 @@ export default class ProductDimension extends Component {
                 );
               }
             )}
+            <p style={{ fontSize: 18, fontWeight: "bold" }}>
+              *Please, provide weight
+            </p>
           </>
         );
+      default:
+        break;
     }
   }
 }

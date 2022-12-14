@@ -1,5 +1,6 @@
 {
   "name": "scandiweb_assignment_project",
+  "homepage": "https://scandiweb.store",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

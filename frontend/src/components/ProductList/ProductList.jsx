@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import Product from "../Product/Product";
 import "../../Styles/ProductList/ProductList.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { deleteProducts, getProducts } from "../../productsAPI";
 
 export default class ProductList extends Component {
   constructor(props) {
     super(props);
-    this.getProducts = this.getProducts.bind(this);
-    this.deleteProducts = this.deleteProducts.bind(this);
     this.handleCheckedProducts = this.handleCheckedProducts.bind(this);
     this.handleMassDelete = this.handleMassDelete.bind(this);
+    this.uncheckAllProducts = this.uncheckAllProducts.bind(this);
 
     this.state = {
       products: [],
@@ -18,33 +17,7 @@ export default class ProductList extends Component {
     };
   }
 
-  async getProducts() {
-    await axios
-      .get("https://products-warehouse.herokuapp.com/")
-      .then((data) => {
-        if (data && data.status === 200) {
-          this.setState({
-            products: data.data,
-          });
-        }
-      })
-      .catch((e) => console.error(e));
-  }
-
-  async deleteProducts() {
-    await axios
-      .delete("https://products-warehouse.herokuapp.com/", {
-        data: this.state.checkedProductIDs,
-      })
-      .catch((e) => console.log(e));
-  }
-
   handleCheckedProducts(checkedId, checked) {
-    console.log(
-      this.state.products,
-      checkedId,
-      this.state.products.findIndex((a) => a.id === checkedId)
-    );
     if (checked) {
       this.setState({
         checkedProductIDs: [...this.state.checkedProductIDs, checkedId],
@@ -59,17 +32,37 @@ export default class ProductList extends Component {
   }
 
   componentDidMount() {
-    this.getProducts();
+    getProducts()
+      .then((data) => {
+        if (data && data.status === 200) {
+          this.setState({
+            products: data.data,
+          });
+        }
+      })
+      .catch((e) => console.error(e));
+  }
+
+  uncheckAllProducts() {
+    let checkboxes = document.getElementsByClassName("delete-checkbox");
+    for (let i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = false;
+    }
   }
 
   handleMassDelete() {
     if (this.state.checkedProductIDs.length > 0) {
-      this.deleteProducts()
+      deleteProducts(this.state.checkedProductIDs)
         .then((res) => {
           if (res && res.status === 200) {
-            this.getProducts();
-            this.setState({
-              checkedProductIDs: [],
+            getProducts().then((data) => {
+              if (data && data.status === 200) {
+                this.uncheckAllProducts();
+                this.setState({
+                  products: data.data,
+                  checkedProductIDs: [],
+                });
+              }
             });
           }
         })
